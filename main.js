@@ -183,7 +183,7 @@ flow.on('done-writing', function () {
     console.log("\n~~~Downloading PDF Files Asynchronously~~~");
     console.log('download path: ' + downloadPath + '\n');
 
-    let downloadList;
+    let downloadList = [];
 
     legend.forEach(function(KB){
         if (KB[1] != 'NULL') {
@@ -228,7 +228,7 @@ function downloadFile(file_url, targetPath, msg) {
 
 flow.on('done-downloading', function(){
     mainWindow.close();
-    console.log('\n\n~~~DONE~~~')
+    console.log('\n~~~DONE~~~\n')
 });
 
 
