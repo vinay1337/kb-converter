@@ -1,0 +1,16 @@
+{
+  "name": "kb-downloader",
+  "version": "1.0.0",
+  "description": "Downloads pdfs from UW KB site more elegantly than before",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Vinay Janardhanam",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^5.0.6",
+    "electron-packager": "^14.0.0"
+  },
+  "dependencies": {}
+}
