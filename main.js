@@ -6,20 +6,23 @@ const {
 } = require('electron');
 const fs = require('fs');
 const events = require('events');
+const request = require('request');
 
 const path = "\\\\fs-hsg-1\\IT Department\\KB PDF2HTML\\";
 const downloadPath = path + "PDFs\\";
 const onlinePath = "http://kb.wisc.edu/images/group87/";
 
-let mainWindow          // login, UI to enter KBIDs, loading gif
+let mainWindow // login, UI to enter KBIDs, loading gif
 //let fetchWindow         // hidden, injects scripts, download KBs
-let contents            // reference to mainWindow.webContents
-let authed = false;     // false until authed through Shibboleth
+let contents // reference to mainWindow.webContents
+let authed = false; // false until authed through Shibboleth
 //let KBID = -1;          // current KB being processed
-let KBlist = -1;        // List of all KBs to download
-let KBcount = -1;       // current index in KBlist of KB being processed
-let returnCount = 0;    // counts how many fetchWindows have sent a pdf-message back
-let legend;             // array to map KBID's to filenames. gets written to legend.csv
+let KBlist = -1; // List of all KBs to download
+let KBcount = -1; // current index in KBlist of KB being processed
+let returnCount = 0; // counts how many fetchWindows have sent a pdf-message back
+let toDownload = 0; //number of KB PDFs to download
+let downloadCount = 0; // counts how many KB PDF's have been downloaded
+let legend; // array to map KBID's to filenames. gets written to legend.csv
 
 let flow = new events.EventEmitter(); // event emitter to structure program
 let doneLocate = false; // true once all fetchWindows have sent pdf-messages back
@@ -88,8 +91,8 @@ ipcMain.on('LIST', (event, arg) => {
     //mainWindow.loadFile('loader.html');
     //Open new window for searching for pdf's
     let index = 0; //for ordering purposes
-    for (let KBID of KBlist) { //TODO: looping like this does not work well...
-        locatePDF(KBID, index); //downloadPDF(locatedPDF(KBID));
+    for (let KBID of KBlist) {
+        locatePDF(KBID, index);
         index++;
     }
 });
@@ -127,35 +130,17 @@ function locatePDF(KBID, index) {
             }
         `);
     });
-
-    // fetchWindow.on('closed', function(){
-    //     console.log(KBID+' locater window closed');
-    // });
-
 }
 
-// triggered when a 
+// triggered when a fetchWindow searches for a PDF and either finds one or doesn't
 ipcMain.on('pdf-message', (event, arg) => {
-    //arg[0] = KBID
-    //arg[1] = file url
-    //arg[2] = index
+    // arg[0] is KBID
+    // arg[1] is file url
+    // arg[2] is index
 
     //console.log('From ' + arg[0] + ' found ' + arg[1] + ' at position ' + arg[2]); // debug
     returnCount++;
     console.log(`>${arg[0]}\treceived: ${returnCount}/${KBcount}`);
-
-    // if (arg[1] == 'NULL') {
-    //     console.log("PDF at " + arg[0] + " not found");
-    //     console.log("'NULL' returned");
-    //     console.log("Skipping...\n");
-    // } else if (!(arg[1].endsWith('.pdf'))) {
-    //     console.log('File of type other than pdf found');
-    //     console.log(arg[1] + ' returned');
-    //     console.log('Skipping...\n');
-    //     arg[1] = 'NULL';
-    // } else {
-    //     console.log('pdf located\n');
-    // }
 
     if (arg[1] == 'NULL') {
         console.log(`>${arg[0]}\tPDF not found. Skipping.`);
@@ -170,10 +155,6 @@ ipcMain.on('pdf-message', (event, arg) => {
     filename = arg[1].match(regex); // matches the filename at the end of the url only
     legend[arg[2]] = [arg[0], filename[0]]; // add to legend
 
-    // if(arg[1] != 'NULL'){                   // print url to download from
-    //     console.log('https://kb.wisc.edu/images/group87/'+arg[0]+'/'+filename[0]);
-    // }
-
     //close window associated with message
     BrowserWindow.fromWebContents(event.sender.webContents).close();
 
@@ -182,11 +163,11 @@ ipcMain.on('pdf-message', (event, arg) => {
         doneLocate = true;
         console.log("done locating KBs");
 
-        flow.emit('doneLocating'); // start writing legend stage
+        flow.emit('done-locating'); // start writing legend stage
     }
 });
 
-flow.on('doneLocating', function () {
+flow.on('done-locating', function () {
     console.log("\n~~~Writing Legend Files~~~");
     legend.forEach(function (KB) {
         fs.appendFileSync(path + 'Data\\legend.csv', KB[0] + "," + KB[1] + "\n");
@@ -195,35 +176,59 @@ flow.on('doneLocating', function () {
     });
     console.log("done writing legend files");
 
-    flow.emit('doneWriting');
+    flow.emit('done-writing'); // start downloading stage
 });
 
-flow.on('doneWriting', function () {
+flow.on('done-writing', function () {
     console.log("\n~~~Downloading PDF Files Asynchronously~~~");
     console.log('download path: ' + downloadPath + '\n');
 
-    legend.forEach(function (KB) {
-        if (KB[1] != 'NULL'){
+    let downloadList;
+
+    legend.forEach(function(KB){
+        if (KB[1] != 'NULL') {
+            toDownload++;
+            downloadList.push(KB);
+        }
+    });
+
+    downloadList.forEach(function (KB) {
+        if (KB[1] != 'NULL') {
             let from = onlinePath + KB[0] + '/' + KB[1];
             let to = downloadPath + KB[1];
             console.log(`>${KB[0]}\tDownloading ${KB[1]}`);
             console.log(`  FROM:\t${from}`)
             console.log(`    TO:\t${to}`);
-
-            let DLWindow = new BrowserWindow({
-                width: 800,
-                height: 600,
-                webPreferences: {
-                    nodeIntegration: true
-                },
-                autoHideMenuBar: true,
-                titleBarStyle: "hiddenInset",
-                show: false
-            });
-
-            DLWindow.close();
+            
+            downloadFile(from, to, KB[0]);
         }
     });
+});
+
+function downloadFile(file_url, targetPath, msg) {
+
+    var req = request({
+        method: 'GET',
+        uri: file_url
+    });
+
+    var out = fs.createWriteStream(targetPath);
+    req.pipe(out);
+
+    req.on('end', function () {
+        console.log(`>${msg}\tPDF download complete`);
+        downloadCount++;
+
+        if(downloadCount >= toDownload){
+            console.log('done downloading files');
+            flow.emit('done-downloading');
+        }
+    });
+}
+
+flow.on('done-downloading', function(){
+    mainWindow.close();
+    console.log('\n\n~~~DONE~~~')
 });
 
 

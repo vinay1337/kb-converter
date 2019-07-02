@@ -12,5 +12,8 @@
     "electron": "^5.0.6",
     "electron-packager": "^14.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "download": "^7.1.0",
+    "request": "^2.88.0"
+  }
 }
