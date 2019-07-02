@@ -244,27 +244,3 @@ app.on('activate', function () {
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) createWindow()
 })
-
-
-//Saved for later
-// // when page loads, if KBID has been specified, locate pdf
-// fetchWindow.webContents.on('dom-ready', function () {
-//     if (KBID > 0) {
-//         console.log('locating pdf...');
-//         mainWindow.webContents.executeJavaScript(`
-//                 console.log('injecting script');
-//                 const { ipcRenderer } = require('electron');
-
-//                 if (document.getElementsByTagName('OBJECT').length > 0){
-//                 console.log('embeded object exists');
-//                 var path = document.getElementsByTagName('OBJECT')[0].data;
-//                 console.log(path);
-//                 ipcRenderer.send('pdf-message', path);
-//                 } else {
-//                 console.log('pdf not found!');
-//                 ipcRenderer.send('pdf-message', "NULL");
-//                 }
-//             `);
-
-//     }
-// });
