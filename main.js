@@ -203,6 +203,7 @@ flow.on('done-writing', function () {
 
     mainWindow.webContents.send('downloading', toDownload);
 
+    // if there's nothing to download, end downloading stage
     if (toDownload == 0) {
         shell.beep();
         console.log('nothing to download');
@@ -210,11 +211,12 @@ flow.on('done-writing', function () {
         flow.emit('done-downloading');
     }
 
+    // download all pdfs which exist
     downloadList.forEach(function (KB) {
         if (KB[1] != 'NONE') {
             let from = onlinePath + KB[0] + '/' + KB[1];
-            let to = downloadPath + KB[0] + '.pdf';
-            //let to = downloadPath + KB[1];
+            let to = downloadPath + KB[0] + '.pdf';   //use either this line 
+            //let to = downloadPath + KB[1];            //or this line
             console.log(`>${KB[0]}\tDownloading ${KB[1]}`);
             console.log(`  FROM:\t${from}`)
             console.log(`    TO:\t${to}`);
@@ -224,21 +226,23 @@ flow.on('done-writing', function () {
     });
 });
 
+// writes download information to a file
 function downloadFile(file_url, targetPath, msg) {
-
     var req = request({
         method: 'GET',
         uri: file_url
     });
 
+    // pipe data from request to a file
     var out = fs.createWriteStream(targetPath);
     req.pipe(out);
 
+    // triggers when download completes
     req.on('end', function () {
         console.log(`>${msg}\tPDF download complete`);
         downloadCount++;
 
-        mainWindow.webContents.send('downloading', downloadCount);
+        mainWindow.webContents.send('downloading', downloadCount); //update progress in renderer
 
         if (downloadCount >= toDownload) {
             console.log('done downloading files');
@@ -250,12 +254,12 @@ function downloadFile(file_url, targetPath, msg) {
 
 flow.on('done-downloading', function () {
     console.log('\n~~~DONE~~~\n');
-    shell.beep();
+    shell.beep(); // beep beep
 });
 
 ipcMain.on('CLOSE', (event, args) => {
     mainWindow.close();
-    shell.openItem(path + 'Data\\names.txt');
+    shell.openItem(path + 'Data\\names.txt'); // open names.txt at end for easier copy/pasting
     app.quit();
 });
 
