@@ -213,8 +213,8 @@ flow.on('done-writing', function () {
     downloadList.forEach(function (KB) {
         if (KB[1] != 'NONE') {
             let from = onlinePath + KB[0] + '/' + KB[1];
-            //let to = downloadPath + KB[0] + '.pdf';
-            let to = downloadPath + KB[1];
+            let to = downloadPath + KB[0] + '.pdf';
+            //let to = downloadPath + KB[1];
             console.log(`>${KB[0]}\tDownloading ${KB[1]}`);
             console.log(`  FROM:\t${from}`)
             console.log(`    TO:\t${to}`);
