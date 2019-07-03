@@ -26,7 +26,6 @@
             background-color: #24b0a2;
             border: none;
             color: white;
-            padding: 15px 32px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
@@ -46,8 +45,9 @@
             text-align: center;
             color: white;
         }
-        .bottom{
-            position: absolute; 
+
+        .bottom {
+            position: absolute;
             bottom: 5px;
             right: 20px;
             text-align: left;
@@ -76,20 +76,49 @@
             border-color: #202020;
         }
 
-        #desc-container{
+        #desc-container {
             padding-left: 10px;
             padding-right: 10px;
             padding-top: 1px;
             padding-bottom: 1px;
         }
-        #dir{
-            text-align: center; 
+
+        #dir {
+            text-align: center;
             font-family: 'Roboto Mono', monospace;
             color: white;
         }
-        #instr{
+
+        #instr {
             margin-left: 10px;
         }
+
+        #msg {
+            color: white;
+            font-size: 24px;
+            margin: 2px auto;
+            display: none;
+        }
+
+        #count {
+            color: white;
+            font-size: 24px;
+            margin: 2px auto;
+            display: none;
+        }
+        #submit {
+            padding: 15px 0px;
+        }
+
+        #close {
+            width: 100px;
+            padding: 7px 0px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            display: none;
+        }
+
     </style>
 </head>
 
@@ -107,9 +136,14 @@
         <div class='container' id='box-container'>
             <textarea rows='4' class='box' name="box" id="box"></textarea></br>
             <input class='btn' type="button" id="submit" value="Start Download">
+            <div class='status'>
+                <p id='msg'>Parsing...</p>
+                <p id='count'></p>
+            </div>
+            <input class='btn' type="button" id="close" value="Close">
         </div>
         <div class='bottom'>
-            <p>Made by Vinay janardhanam</p>
+            <p>Made by Vinay Janardhanam - 2019</p>
         </div>
     </div>
 
