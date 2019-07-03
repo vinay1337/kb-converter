@@ -215,8 +215,8 @@ flow.on('done-writing', function () {
     downloadList.forEach(function (KB) {
         if (KB[1] != 'NONE') {
             let from = onlinePath + KB[0] + '/' + KB[1];
-            let to = downloadPath + KB[0] + '.pdf';   //use either this line 
-            //let to = downloadPath + KB[1];            //or this line
+            let to = downloadPath + KB[0] + '.pdf';   // use this line if using NEW kb-organizer
+            //let to = downloadPath + KB[1];          // use this line if using OLD kb-organizer
             console.log(`>${KB[0]}\tDownloading ${KB[1]}`);
             console.log(`  FROM:\t${from}`)
             console.log(`    TO:\t${to}`);
