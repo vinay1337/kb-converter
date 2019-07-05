@@ -1,0 +1,98 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #343434;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+textarea {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 90%;
+    height: 300px;
+    font-size: 16px;
+    resize: vertical;
+    background-color: #555555;
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+    border-color: #202020;
+}
+
+.column {
+    margin-left: 5%;
+}
+
+.container {
+    border-radius: 10px;
+    background-color: #202020;
+    margin: 10px auto;
+    width: 360px;
+    padding: 10px 10px;
+    text-align: center;
+}
+
+.btn {
+    background-color: #24b0a2;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+    margin: 5px 0px;
+    padding: 15px 0px;
+}
+
+.desc {
+    color: #24b0a2;
+    font-size: 14px;
+    text-align: left;
+    margin: 0px auto;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    text-align: left;
+    color: white;
+}
+
+.desc.instr {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.desc.dir {
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.msg {
+    color: white;
+    font-size: 24px;
+    margin: 2px auto;
+}
+
+#page {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+}
+
+#names {
+    width: 150px;
+    padding: 7px 0px;
+    display: inline-block;
+}
