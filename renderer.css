@@ -3,7 +3,7 @@ body {
     background-color: #343434;
 }
 
-h1 {
+h1,h2 {
     text-align: center;
     color: white;
 }
@@ -24,7 +24,7 @@ textarea {
 }
 
 .column {
-    margin-left: 5%;
+    margin-left: 2%;
 }
 
 .container {
@@ -91,13 +91,7 @@ textarea {
     flex-direction: row;
 }
 
-#names {
-    width: 150px;
-    padding: 7px 0px;
-    display: inline-block;
-}
-
-#download-reset{
-    width: 150px;
+.btn.slimbtn {
+    width: 180px;
     padding: 7px 0px;
 }
