@@ -6,6 +6,9 @@ const {
     ipcRenderer
 } = require('electron')
 
+const remote = require('electron').remote;
+const dialog = remote.dialog;
+
 let KBcount = -1;
 let downloaded = -1;
 let DLstatus;
@@ -27,16 +30,16 @@ function addLoadEvent(func) {
 }
 
 function autofocusBox() {
-    document.getElementById('box').focus();
+    document.getElementById('DLbox').focus();
 }
 
 addLoadEvent(autofocusBox);
-
 // --Load events above-- //
 
+// download button listener
 document.getElementById('download').addEventListener('click', function () {
 
-    let LIST = document.getElementById("box").value;
+    let LIST = document.getElementById("DLbox").value;
     document.getElementById('download').style.display = 'none';
     DLstatus = document.getElementById('DLstatus');
     DLcount = document.getElementById('DLcount');
@@ -58,13 +61,11 @@ ipcRenderer.on('locating', (event, args) => {
         DLcount.innerHTML = `(${args}/${KBcount})`;
     }
 });
-
 // Show user that KBs are being verified (writing legend file) and show progress
 ipcRenderer.on('verifying', (event, args) => {
     DLstatus.innerHTML = 'Verifying...';
     DLcount.innerHTML = `(${args}/${KBcount})`;
 });
-
 // Show user that KBs are being downloaded and show progress
 ipcRenderer.on('downloading', (event, args) => {
     if (downloaded == -1) {
@@ -79,14 +80,36 @@ ipcRenderer.on('downloading', (event, args) => {
 // Display names button and display done!
 ipcRenderer.on('DONE', (event, args) => {
     DLstatus.innerHTML = 'Done!';
-    if (args == 1337){
-        DLcount.innerHTML = 'nothing to download';
+    if (args == 1337) {
+        DLcount.innerHTML = 'Nothing to Download';
     } else {
         DLcount.style.display = 'none';
     }
-    //TODO: download again button
+    document.getElementById('download-reset').style.display = 'inline-block';
 });
 
+document.getElementById('download-reset').addEventListener('click', function () {
+    choice = dialog.showMessageBox(
+        remote.getCurrentWindow(), {
+            type: 'question',
+            buttons: ['Yes', 'No'],
+            title: 'Reset?',
+            message: 'Start a new download?\nnames.txt will be reset'
+        });
+
+    if (choice === 0) {
+        document.getElementById('download-reset').style.display = 'none';
+        DLstatus.style.display = 'none';
+        DLcount.style.display = 'none';
+        document.getElementById('download').style.display = 'inline-block';
+        KBcount = -1;
+        downloaded = -1;
+        document.getElementById("DLbox").value = '';
+        ipcRenderer.send('download-reset', 0);
+    }
+});
+
+//open names.txt
 document.getElementById('names').addEventListener('click', function () {
-    ipcRenderer.send('names.txt',0);
+    ipcRenderer.send('names.txt', 0);
 });

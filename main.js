@@ -266,8 +266,17 @@ flow.on('done-downloading', function () {
     shell.beep(); // beep beep
 });
 
-ipcMain.on('names.txt', (event, args) =>{
+ipcMain.on('names.txt', (event, args) => {
     shell.openItem(path + 'Data\\names.txt');
+});
+
+ipcMain.on('download-reset', (events, args) => {
+    KBlist = -1; // List of all KBs to download
+    KBcount = -1; // number of KBs in list to be processed
+    returnCount = 0; // counts how many fetchWindows have sent a pdf-message back
+    toDownload = 0; //number of KB PDFs to download
+    downloadCount = 0; // counts how many KB PDF's have been downloaded
+    legend; // array to map KBID's to filenames. gets written to legend.csv
 });
 
 // This method will be called when Electron has finished
