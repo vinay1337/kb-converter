@@ -56,6 +56,11 @@
 
         #page {
             margin-top: 5%;
+            display: flex;
+            flex-direction: row;
+        }
+        #downloader{
+            margin-left: 5%;
         }
 
         #box-container {
@@ -106,6 +111,7 @@
             margin: 2px auto;
             display: none;
         }
+
         #submit {
             padding: 15px 0px;
         }
@@ -118,32 +124,33 @@
             margin-top: 10px;
             display: none;
         }
-
     </style>
 </head>
 
 <body>
     <div id='page'>
-        <h1 class='header'>KB Downloader v2</h1>
-        <div class='container' id='desc-container'>
-            <p class='desc' id='instr'>
-                <span style='color: white'>&gt;&nbsp;&nbsp;</span>Enter KB ID or list of KB IDs<br />
-                <span style='color: white'>&gt;&nbsp;&nbsp;</span>Downloads saved as PDF at:
-            </p>
-            <p class='desc' id='dir'>\\FS-LS-2\IT Department\KB PDF2HTML\PDFs</p>
+        <div id='downloader'>
+            <h1 class='header'>KB Downloader v2</h1>
+            <div class='container' id='desc-container'>
+                <p class='desc' id='instr'>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Enter KB ID or list of KB IDs<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Downloads saved as PDF at:
+                </p>
+                <p class='desc' id='dir'>\\FS-LS-2\IT Department\KB PDF2HTML\PDFs</p>
 
-        </div>
-        <div class='container' id='box-container'>
-            <textarea rows='4' class='box' name="box" id="box"></textarea></br>
-            <input class='btn' type="button" id="submit" value="Start Download">
-            <div class='status'>
-                <p id='msg'>Parsing...</p>
-                <p id='count'></p>
             </div>
-            <input class='btn' type="button" id="close" value="Close">
-        </div>
-        <div class='bottom'>
-            <p>Made by Vinay Janardhanam - 2019</p>
+            <div class='container' id='box-container'>
+                <textarea rows='4' class='box' name="box" id="box"></textarea></br>
+                <input class='btn' type="button" id="submit" value="Start Download">
+                <div class='status'>
+                    <p id='msg'>Parsing...</p>
+                    <p id='count'></p>
+                </div>
+                <input class='btn' type="button" id="close" value="Close">
+            </div>
+            <div class='bottom'>
+                <p>Made by Vinay Janardhanam - 2019</p>
+            </div>
         </div>
     </div>
 

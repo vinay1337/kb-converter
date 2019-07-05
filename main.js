@@ -36,6 +36,8 @@ function createWindow() {
         titleBarStyle: "hiddenInset"
     })
 
+    mainWindow.maximize();
+
     // and load the KB to get login page
     mainWindow.loadURL('http://kb.wisc.edu/housing/internal/');
     console.log("\n\n");
@@ -260,7 +262,8 @@ flow.on('done-downloading', function () {
 ipcMain.on('CLOSE', (event, args) => {
     mainWindow.close();
     shell.openItem(path + 'Data\\names.txt'); // open names.txt at end for easier copy/pasting
-    app.quit();
+    //app.quit();
+
 });
 
 
