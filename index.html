@@ -7,149 +7,45 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
     <meta author='Vinay Janardhanam'>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #343434;
-        }
-
-        .container {
-            border-radius: 10px;
-            background-color: #202020;
-            margin: 10px auto;
-            width: 360px;
-            padding: 10px 10px;
-            text-align: left;
-        }
-
-        .btn {
-            background-color: #24b0a2;
-            border: none;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            width: 200px;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 5px;
-        }
-
-        .desc {
-            color: #24b0a2;
-            font-size: 14px;
-        }
-
-        .header {
-            text-align: center;
-            color: white;
-        }
-
-        .bottom {
-            position: absolute;
-            bottom: 5px;
-            right: 20px;
-            text-align: left;
-            color: white;
-        }
-
-        #page {
-            margin-top: 5%;
-            display: flex;
-            flex-direction: row;
-        }
-        #downloader{
-            margin-left: 5%;
-        }
-
-        #box-container {
-            text-align: center;
-        }
-
-        #box {
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 5px;
-            width: 90%;
-            height: 300px;
-            font-size: 16px;
-            resize: vertical;
-            background-color: #555555;
-            font-family: 'Roboto Mono', monospace;
-            color: white;
-            border-color: #202020;
-        }
-
-        #desc-container {
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 1px;
-            padding-bottom: 1px;
-        }
-
-        #dir {
-            text-align: center;
-            font-family: 'Roboto Mono', monospace;
-            color: white;
-        }
-
-        #instr {
-            margin-left: 10px;
-        }
-
-        #msg {
-            color: white;
-            font-size: 24px;
-            margin: 2px auto;
-            display: none;
-        }
-
-        #count {
-            color: white;
-            font-size: 24px;
-            margin: 2px auto;
-            display: none;
-        }
-
-        #submit {
-            padding: 15px 0px;
-        }
-
-        #close {
-            width: 100px;
-            padding: 7px 0px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 10px;
-            display: none;
-        }
-    </style>
+    <link rel='stylesheet' type='text/css' href='renderer.css'>
 </head>
 
 <body>
     <div id='page'>
-        <div id='downloader'>
-            <h1 class='header'>KB Downloader v2</h1>
-            <div class='container' id='desc-container'>
-                <p class='desc' id='instr'>
+
+        <!--Downloader box-->
+        <div class='column'>
+            <h1>KB Downloader v2</h1>
+            <div class='container'>
+                <p class='desc instr'>
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Enter KB ID or list of KB IDs<br />
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Downloads saved as PDF at:
                 </p>
-                <p class='desc' id='dir'>\\FS-LS-2\IT Department\KB PDF2HTML\PDFs</p>
-
+                <p class='desc dir' style='margin-bottom: 0px'>\\FS-LS-2\IT Department\KB PDF2HTML\PDFs</p>
             </div>
-            <div class='container' id='box-container'>
-                <textarea rows='4' class='box' name="box" id="box"></textarea></br>
-                <input class='btn' type="button" id="submit" value="Start Download">
+            <div class='container box-container'>
+                <textarea name='box' id="box"></textarea></br>
+                <input class='btn' type="button" id="download" value="Start Download">
                 <div class='status'>
-                    <p id='msg'>Parsing...</p>
-                    <p id='count'></p>
+                    <p class='msg' id='DLstatus' style='display: none'>Parsing...</p>
+                    <p class='msg' id='DLcount' style='display: none'>(0/0)</p>
                 </div>
-                <input class='btn' type="button" id="close" value="Close">
             </div>
             <div class='bottom'>
                 <p>Made by Vinay Janardhanam - 2019</p>
+            </div>
+        </div>
+
+        <!--Manual Steps box-->
+        <div class='column'>
+            <h1>Manual Steps</h1>
+            <div class='container desc-container'>
+                <p class='desc instr'>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Open Conversion log.xlsx<br />
+                </p>
+            </div>
+            <div class='container box-container'>
+                <input class='btn' type="button" id="names" value="Open names.txt">
             </div>
         </div>
     </div>
