@@ -85,6 +85,13 @@ ipcMain.on('LIST', (event, arg) => {
 
     console.log("\n~~~Locating KBs Asynchronously~~~")
     //update main window to show progress
+    if(KBcount == 0){
+        shell.beep();
+        console.log('nothing to download');
+        mainWindow.webContents.send('DONE', 1337);
+        flow.emit('done-downloading');
+        return;
+    }
     mainWindow.webContents.send('locating', KBcount);
 
     //Open new window for searching for pdf's
@@ -259,13 +266,9 @@ flow.on('done-downloading', function () {
     shell.beep(); // beep beep
 });
 
-ipcMain.on('CLOSE', (event, args) => {
-    mainWindow.close();
-    shell.openItem(path + 'Data\\names.txt'); // open names.txt at end for easier copy/pasting
-    //app.quit();
-
+ipcMain.on('names.txt', (event, args) =>{
+    shell.openItem(path + 'Data\\names.txt');
 });
-
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
