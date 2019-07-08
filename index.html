@@ -11,18 +11,25 @@
 </head>
 
 <body>
+    <br/>
+    <h1>KB PDF to HTML Conversion</h1>
+    <br />
     <div id='page'>
+        <!--Prereqs box-->
         <div class='column'>
             <h2>Step 1: Prerequisites</h2>
             <div class='container'>
                 <p class='desc instr'>
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Install latest version of Python 3<br/>
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Import the batch converter action for Adobe Acrobat<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Import the batch converter action for Adobe Acrobat<br /><br/>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Open "KB conversion log.xlsx"<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Copy a portion of the list of KBs to be downloaded and converted (around 20-30 recommended)
                 </p>
             </div>
             <div class='container'>
                 <input class='btn slimbtn' type="button" id="macro" value="Import Acrobat action">
-                <input class='btn slimbtn' type="button" id="py-download" value="Python 3 website">
+                <input class='btn slimbtn' type="button" id="py-download" value="Python 3 website"><br /><br />
+                <input class='btn slimbtn' type="button" id="conversion-log" value="KB conversion log.xlsx">
             </div>
         </div>
 
@@ -31,7 +38,7 @@
             <h2>Step 2: Downloading</h2>
             <div class='container'>
                 <p class='desc instr'>
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Enter KB ID or list of KB IDs<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Paste in list of KB IDs to download<br />
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Downloads saved as PDF at:
                 </p>
                 <p class='desc dir' style='margin-bottom: 0px'>\\FS-LS-2\IT Department\KB PDF2HTML\PDFs</p>
@@ -51,7 +58,7 @@
             </div>
         </div>
 
-        <!--Manual Steps box-->
+        <!--Conversion steps box-->
         <div class='column'>
             <h2>Step 3: Conversion</h2>
             <div class='container'>
@@ -59,7 +66,7 @@
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Open names.txt<br />
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Paste names.txt into "KB conversion log.xlsx" at appropriate location<br/><br/>
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Open Adobe Acrobat DC<br />
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>In the Tools menu, open the Action Wizard and run the action <span style='color: white'>"Batch convert to HTML"</span><br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>In the Tools menu, open the Action Wizard and run the <span style='color: white'> "Batch convert to HTML" </span> action<br />
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Wait for Acrobat to finish converting the PDFs into HTML documents<br />
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Converted HTML documents stored at:
                 </p>
@@ -67,8 +74,7 @@
 
             </div>
             <div class='container'>
-                <input class='btn slimbtn' type="button" id="conversion-log" value="KB conversion log.xlsx"><br />
-                <input class='btn slimbtn' type="button" id="names" value="names.txt"><br /><br/>
+                <input class='btn slimbtn' type="button" id="names" value="names.txt"><br />
                 <input class='btn slimbtn' type="button" id="acrobat" value="Adobe Acrobat DC">
             </div>
         </div>
