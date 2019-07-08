@@ -68,7 +68,7 @@ footer {
     border-radius: 10px;
     background-color: #202020;
     margin: 10px auto;
-    width: 360px;
+    width: auto;
     padding: 10px 10px;
     text-align: center;
 }
