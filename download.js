@@ -36,23 +36,14 @@ function autofocusBox() {
 addLoadEvent(autofocusBox);
 // --Load events above-- //
 
-//------------------------FIRST COLUMN----------------------------//
-
-// open python 3 download website
-document.getElementById('py-download').addEventListener('click', function () {
-    ipcRenderer.send('py-download', 0);
-});
-// import batch converter macro to Adobe Acrobat
-document.getElementById('macro').addEventListener('click', function () {
-    ipcRenderer.send('macro', 0);
-});
-
 
 
 //------------------------SECOND COLUMN----------------------------//
 
 // download button listener
 document.getElementById('download').addEventListener('click', function () {
+
+    ipcRenderer.send('download-reset', 0);
 
     let LIST = document.getElementById("DLbox").value;
     document.getElementById('download').style.display = 'none';
