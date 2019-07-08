@@ -36,7 +36,7 @@ function createWindow() {
         titleBarStyle: "hiddenInset"
     })
 
-    mainWindow.maximize();
+    //mainWindow.maximize();
 
     // and load the KB to get login page
     mainWindow.loadURL('http://kb.wisc.edu/housing/internal/');
@@ -60,7 +60,7 @@ function createWindow() {
             console.log("KB access authorized");
             authed = true;
 
-            mainWindow.webContents.loadFile('index.html');
+            mainWindow.webContents.loadFile('prereqs.html');
         }
     });
 }
@@ -270,18 +270,18 @@ flow.on('done-downloading', function () {
 ipcMain.on('names.txt', (event, args) => {
     shell.openItem(path + 'Data\\names.txt');
 });
-ipcMain.on('conversion-log', (event, args) => {
-    shell.openItem(path + 'KB conversion log.xlsx');
-});
-ipcMain.on('acrobat', (event, args) => {
-    shell.openItem('C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Adobe Acrobat DC');
-});
-ipcMain.on('macro', (event, args) => {
-    shell.openItem(path + 'Scripts\\Batch convert to HTML.sequ');
-});
-ipcMain.on('py-download', (event, args) => {
-    shell.openExternal('https://www.python.org/downloads/')
-});
+// ipcMain.on('conversion-log', (event, args) => {
+//     shell.openItem(path + 'KB conversion log.xlsx');
+// });
+// ipcMain.on('acrobat', (event, args) => {
+//     shell.openItem('C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Adobe Acrobat DC');
+// });
+// ipcMain.on('macro', (event, args) => {
+//     shell.openItem(path + 'Scripts\\Batch convert to HTML.sequ');
+// });
+// ipcMain.on('py-download', (event, args) => {
+//     shell.openExternal('https://www.python.org/downloads/')
+// });
 
 ipcMain.on('download-reset', (events, args) => {
     KBlist = -1; // List of all KBs to download
