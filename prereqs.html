@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>KB Converter</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <meta name="google" content="notranslate">
+    <meta author='Vinay Janardhanam'>
+    <link rel='stylesheet' type='text/css' href='renderer.css'>
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <ul class="nav">
+        <li><a class='active' href="/prereqs.html">Prerequsites</a></li>
+        <li><a href="./download.html">Download</a></li>
+        <li><a href="./convert.html">Convert</a></li>
+        <li><a href="./organize.html">Organize</a></li>
+        <li><a href="./upload.html">Upload</a></li>
+    </ul>
+
+    <div id='page'>
+        <!--Prereqs box-->
+        <div class='column'>
+            <h2>Step 1: Prerequisites</h2>
+            <div class='container'>
+                <p class='desc instr'>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Install latest version of Python 3<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Import the batch converter action for Adobe
+                    Acrobat<br /><br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Open "KB conversion log.xlsx"<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Copy a portion of the list of KBs to be downloaded
+                    and converted (around 20-30 recommended)
+                </p>
+            </div>
+            <div class='container'>
+                <input class='btn slimbtn' type="button" id="macro" value="Import Acrobat action">
+                <input class='btn slimbtn' type="button" id="py-download" value="Python 3 website"><br /><br />
+                <input class='btn slimbtn' type="button" id="conversion-log" value="KB conversion log.xlsx">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Vinay Janardhanam - 2019</p>
+    </footer>
+
+
+    <script>
+        // You can also require other files to run in this process
+        require('./prereqs.js')
+    </script>
+</body>
+
+</html>
