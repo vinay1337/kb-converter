@@ -23,8 +23,45 @@ textarea {
     border-color: #202020;
 }
 
+footer {
+    position: fixed;
+    left: 15px;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: left;
+    font-size: 12px;
+}
+
+/*Nav-bar begin*/
+.nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    background-color: #343434;
+}
+.nav li {
+    display: inline;
+}
+.nav a {
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+.nav a:hover{
+    background-color: #202020;
+}
+.nav a.active{
+    background-color: #24b0a2;
+}
+/*Nav-bar end*/
+
 .column {
-    margin-left: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container {
@@ -50,20 +87,16 @@ textarea {
     margin: 5px 0px;
     padding: 15px 0px;
 }
+.btn:hover{
+    /* background-color: #2ed9c8; */
+    background-color: #1c8a7f;
+}
 
 .desc {
     color: #24b0a2;
     font-size: 14px;
     text-align: left;
     margin: 0px auto;
-}
-
-.bottom {
-    position: absolute;
-    bottom: 5px;
-    right: 20px;
-    text-align: left;
-    color: white;
 }
 
 .desc.instr {
@@ -85,10 +118,12 @@ textarea {
     margin: 2px auto;
 }
 
+
+
 #page {
+    margin-top: 5%;
     display: flex;
     flex-direction: row;
-    margin-left: 5%
 }
 
 .btn.slimbtn {
