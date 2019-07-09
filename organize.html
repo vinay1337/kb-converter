@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>KB Converter</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <meta name="google" content="notranslate">
+    <meta author='Vinay Janardhanam'>
+    <link rel='stylesheet' type='text/css' href='renderer.css'>
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <ul class="nav">
+        <li><a href="./prereqs.html">Prerequsites</a></li>
+        <li><a href="./download.html">Download</a></li>
+        <li><a href="./convert.html">Convert</a></li>
+        <li><a class='active' href="./organize.html">Organize</a></li>
+        <li><a href="./upload.html">Upload</a></li>
+    </ul>
+
+
+    <div id='page'>
+        <div class='column'>
+            <div style='text-align: center'>
+                <a href='./convert.html'><input class='btn slim' type="button" id="prev" value="&lt;&lt; Previous"></a>
+                <h2 class='header'>Step 4: Organize KBs</h2>
+                <a href='./upload.html'><input class='btn slim' type="button" id="next" value="Next &gt;&gt;"></a>
+            </div>
+            <div class='container'>
+                <p class='desc instr'>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span><br />
+                </p>
+                <p class='desc dir'>\\FS-LS-2\IT Department\KB PDF2HTML\Organized</p>
+            </div>
+            <div class='container'>
+                <input class='btn slim' type="button" id="button" value="Button"><br />
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Vinay Janardhanam - 2019</p>
+    </footer>
+
+    <script>
+        // You can also require other files to run in this process
+        require('./convert.js')
+    </script>
+</body>
+
+</html>
