@@ -4,17 +4,19 @@
 
 const {
     ipcRenderer
-} = require('electron')
-
-const remote = require('electron').remote;
-const dialog = remote.dialog;
+} = require('electron');
+const {
+    remote,
+    shell
+} = require('electron').remote;
+//const dialog = remote.dialog;
 
 let KBcount = -1;
 let downloaded = -1;
 let DLstatus;
 let DLcount;
 
-// --Load events below-- //
+// --Add load events here-- //
 function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof window.onload != 'function') {
@@ -28,34 +30,36 @@ function addLoadEvent(func) {
         }
     }
 }
-
-function autofocusBox() {
+// Focuses textarea on load
+addLoadEvent(() => {
     document.getElementById('DLbox').focus();
+});
+
+//reset variables;
+function reset() {
+    KBcount = -1;
+    downloaded = -1;
+    //document.getElementById("DLbox").value = '';
 }
 
-addLoadEvent(autofocusBox);
-// --Load events above-- //
-
-
-
-//------------------------SECOND COLUMN----------------------------//
 
 // download button listener
 document.getElementById('download').addEventListener('click', function () {
 
-    ipcRenderer.send('download-reset', 0);
+    //reset(); //ipcRenderer.send('download-reset', 0);
 
     let LIST = document.getElementById("DLbox").value;
     document.getElementById('download').style.display = 'none';
     DLstatus = document.getElementById('DLstatus');
     DLcount = document.getElementById('DLcount');
-
     DLstatus.style.display = 'block';
     DLcount.style.display = 'block';
 
+    console.log('sending list');
     // send username to main.js 
     ipcRenderer.send('LIST', LIST);
 });
+
 // Show user that KBs are being located and show progress
 ipcRenderer.on('locating', (event, args) => {
     if (KBcount < 0) {
@@ -66,11 +70,15 @@ ipcRenderer.on('locating', (event, args) => {
         DLcount.innerHTML = `(${args}/${KBcount})`;
     }
 });
+
+
 // Show user that KBs are being verified (writing legend file) and show progress
 ipcRenderer.on('verifying', (event, args) => {
     DLstatus.innerHTML = 'Verifying...';
     DLcount.innerHTML = `(${args}/${KBcount})`;
 });
+
+
 // Show user that KBs are being downloaded and show progress
 ipcRenderer.on('downloading', (event, args) => {
     if (downloaded == -1) {
@@ -81,6 +89,8 @@ ipcRenderer.on('downloading', (event, args) => {
         DLcount.innerHTML = `(${args}/${downloaded})`;
     }
 });
+
+
 // Display names button and display done!
 ipcRenderer.on('DONE', (event, args) => {
     DLstatus.innerHTML = 'Done!';
@@ -89,43 +99,22 @@ ipcRenderer.on('DONE', (event, args) => {
     } else {
         DLcount.style.display = 'none';
     }
-    document.getElementById('download-reset').style.display = 'inline-block';
-});
-// Resets names.txt and textarea then resets variables for downloader in main.js
-document.getElementById('download-reset').addEventListener('click', function () {
-    choice = dialog.showMessageBox(
-        remote.getCurrentWindow(), {
-            type: 'question',
-            buttons: ['Yes', 'No'],
-            title: 'Reset?',
-            message: 'Start a new download?\nText box and names.txt will be reset'
-        });
-
-    if (choice === 0) {
-        document.getElementById('download-reset').style.display = 'none';
-        DLstatus.style.display = 'none';
-        DLcount.style.display = 'none';
-        document.getElementById('download').style.display = 'inline-block';
-        KBcount = -1;
-        downloaded = -1;
-        document.getElementById("DLbox").value = '';
-        ipcRenderer.send('download-reset', 0);
-    }
+    document.getElementById('download').style.display = 'inline-block';
+    reset();
 });
 
 
 //------------------------THIRD COLUMN----------------------------//
 
-//open names.txt
-document.getElementById('names').addEventListener('click', function () {
-    ipcRenderer.send('names.txt', 0);
-});
-//open KB conversion log.xlsx
-document.getElementById('conversion-log').addEventListener('click', function(){
-    ipcRenderer.send('conversion-log', 0);
-});
-//open KB conversion log.xlsx
-document.getElementById('acrobat').addEventListener('click', function () {
-    ipcRenderer.send('acrobat', 0);
-});
-
+// //open names.txt
+// document.getElementById('names').addEventListener('click', function () {
+//     ipcRenderer.send('names.txt', 0);
+// });
+// //open KB conversion log.xlsx
+// document.getElementById('conversion-log').addEventListener('click', function () {
+//     ipcRenderer.send('conversion-log', 0);
+// });
+// //open KB conversion log.xlsx
+// document.getElementById('acrobat').addEventListener('click', function () {
+//     ipcRenderer.send('acrobat', 0);
+// });

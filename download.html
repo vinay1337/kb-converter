@@ -24,23 +24,37 @@
 
     <div id='page'>
         <div class='column'>
-            <h2>Step 2: Download KBs</h2>
+            <div style='text-align: center'>
+                <a href='./prereqs.html'><input class='btn slim' type="button" id="prev" value="&lt;&lt; Previous"></a>
+                <h2 class='header'>Step 2: Download KBs</h2>
+                <a href='./convert.html'><input class='btn slim' type="button" id="next" value="Next &gt;&gt;"></a>
+            </div>
             <div class='container'>
                 <p class='desc instr'>
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Paste in list of KB IDs to download<br />
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Downloads saved as PDF at:
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Enter list of KB IDs to download<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>KB IDs should be separated by commas, spaces, or
+                    newlines<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Downloads saved as PDF in:
                 </p>
-                <p class='desc dir' style='margin-bottom: 0px'>\\FS-LS-2\IT Department\KB PDF2HTML\PDFs</p>
+                <p class='desc dir'>\\FS-LS-2\IT Department\KB PDF2HTML\PDFs</p>
+                <p class='desc instr'>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>List of PDF filenames located in: <br />
+                </p>
+                <p class='desc dir'>\\FS-LS-2\IT Department\KB PDF2HTML\Data\names.txt</p>
+                <p class='desc instr'>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>names.txt cleared on download start<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>names.txt order corresponds to input order<br />
+                </p>
             </div>
-            <div class='container box-container'>
-                <p class='desc dir' style='margin-bottom: 0px; margin-top:0px; font-size: 18px'>KB Downloader v2</p>
+            <div class='container'>
+                <p class='desc dir' style='margin-bottom: 0px; margin-top:0px; font-size: 18px'>KB Downloader v3</p>
                 <textarea name='box' id="DLbox"></textarea></br>
-                <input class='btn' type="button" id="download" value="Start Download">
                 <div class='status'>
-                    <p class='msg' id='DLstatus' style='display: none'>Parsing...</p>
-                    <p class='msg' id='DLcount' style='display: none'>(0/0)</p>
+                    <p class='msg' id='DLstatus' style='display: none'>Log in with NetID to access KB</p>
+                    <p class='msg' id='DLcount' style='display: none'>Waiting for auth...</p>
                 </div>
-                <input class='btn slimbtn' type="button" id="download-reset" value="New Download" style='display: none'>
+                <br />
+                <input class='btn' type="button" id="download" value="Start Download">
             </div>
         </div>
     </div>
