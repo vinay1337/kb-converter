@@ -1,7 +1,7 @@
 {
-  "name": "kb-downloader",
+  "name": "kb-converter",
   "version": "1.0.0",
-  "description": "Downloads pdfs from UW KB site more elegantly than before",
+  "description": "Downloads and converts pdf KB articles to HTML documents",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
