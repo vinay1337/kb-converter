@@ -33,6 +33,7 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true
         },
+        backgroundColor: '#343434',
         autoHideMenuBar: true,
         titleBarStyle: "hiddenInset"
     })
