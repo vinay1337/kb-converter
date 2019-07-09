@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>KB Converter</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <meta name="google" content="notranslate">
+    <meta author='Vinay Janardhanam'>
+    <link rel='stylesheet' type='text/css' href='renderer.css'>
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <ul class="nav">
+        <li><a href="./prereqs.html">Prerequsites</a></li>
+        <li><a href="./download.html">Download</a></li>
+        <li><a class='active' href="./convert.html">Convert</a></li>
+        <li><a href="./organize.html">Organize</a></li>
+        <li><a href="./upload.html">Upload</a></li>
+    </ul>
+
+
+    <div id='page'>
+        <div class='column'>
+            <div style='text-align: center'>
+                <a href='./download.html'><input class='btn slim' type="button" id="prev" value="&lt;&lt; Previous"></a>
+                <h2 class='header'>Step 3: Convert KBs</h2>
+                <a href='./organize.html'><input class='btn slim' type="button" id="next" value="Next &gt;&gt;"></a>
+            </div>
+            <div class='container'>
+                <p class='desc instr'>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Paste contents of names.txt into corresponding
+                    section of "KB conversion log.xlsx"<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Open Adobe Acrobat DC<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Under the Tools menu, open the Action Wizard<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Run the "Batch convert to HTML" action<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Converted KBs saved as HTML file/folder pairs in:
+                </p>
+                <p class='desc dir'>\\FS-LS-2\IT Department\KB PDF2HTML\HTMLs</p>
+            </div>
+            <div class='container'>
+                <input class='btn slim' type="button" id="names" value="names.txt"><span style='color:white; font-weight: bold'> &#x2192; </span>
+                <input class='btn slim' type="button" id="conversion-log" value="KB conversion log.xlsx"><br/>
+                <input class='btn slim' type="button" id="acrobat" value="Adobe Acrobat DC">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Vinay Janardhanam - 2019</p>
+    </footer>
+
+    <script>
+        // You can also require other files to run in this process
+        require('./convert.js')
+    </script>
+</body>
+
+</html>
