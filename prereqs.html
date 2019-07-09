@@ -24,21 +24,27 @@
     <div id='page'>
         <!--Prereqs box-->
         <div class='column'>
-            <h2>Step 1: Prerequisites</h2>
+            <div style='text-align: center'>
+                <h2 class='header' style='margin-left:75px'>Step 1: Prerequisites</h2>
+                <a href='./download.html'><input class='btn slim' type="button" id="next" value="Next &gt;&gt;"></a>
+            </div>
             <div class='container' style='width: 450px;'>
                 <p class='desc instr'>
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Install latest version of Python 3<br />
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Import the batch converter action for Adobe
                     Acrobat<br /><br />
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Open "KB conversion log.xlsx"<br />
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Copy a portion of the list of KBs to be downloaded
-                    and converted (around 20-30 recommended)
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Copy list of KB IDs of KBs to be downloaded
+                    and converted <br />
+                    <span style='color: white'>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span> 20-30 at a time
+                    recommended<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Paste list of KB IDs into the downloader on the next page<br />
                 </p>
             </div>
             <div class='container'>
-                <input class='btn slimbtn' type="button" id="macro" value="Import Acrobat action">
-                <input class='btn slimbtn' type="button" id="py-download" value="Python 3 website"><br />
-                <input class='btn slimbtn' type="button" id="conversion-log" value="KB conversion log.xlsx">
+                <input class='btn slim' type="button" id="macro" value="Import Acrobat action">
+                <input class='btn slim' type="button" id="py-download" value="Python 3 website"><br />
+                <input class='btn slim' type="button" id="conversion-log" value="KB conversion log.xlsx">
             </div>
         </div>
     </div>
