@@ -312,21 +312,59 @@ function createWindow() {
 //=============================Organizer=============================//
 {
     let copy;
-    let names = [];
+    let names;
 
     ipcMain.on('organize', (event, args) => {
-        copy = args;
-        console.log(`Copy Mode: ${copy}`);
+        let cc = 0; // copy count
+        names = [];
 
-        // //Organize HTMLs TODO:
-        // fs.readdirSync(path + "HTMLs").forEach(item => {
-        //     let KBID = item.match(/(.+?)(\.[^.]*$|$)/)[1]; //ex. item ='30749.pdf' => [0]='30749.pdf' [1]='30749', [2]='.pdf'
-        //     let src = path + 'HTMLs\\' + item;
-        //     let dir = path + 'Organized\\' + KBID;
-        //     let dest = dir + '\\' + file;
+        function ccc() { // copy count callback
+            cc--;
+            if (cc <= 0) {
+                console.log('Done organizing HTMLs');
+                console.log('KBs copied: ' + names);
+            }
+        }
 
-        //     console.log(item);
-        // });
+        //Organize HTMLs TODO:
+        fs.readdirSync(path + 'HTMLs').forEach(item => {
+
+            let srcPath = path + 'HTMLs\\';
+            let KBID = item.match(/(.+?)(\.[^.]*$|$)/)[1]; //ex. item ='30749.html' => [0]='30749.html' [1]='30749', [2]='.html
+
+            let destPath = path + 'Organized\\' + KBID + '\\';
+            fs.mkdirpSync(destPath);
+
+            if (fs.lstatSync(srcPath+item).isDirectory()) { //copy images
+                fs.mkdirpSync(destPath + 'Images\\');
+                fs.readdirSync(srcPath + item).forEach(file => { //images folder loop
+                    let to = destPath + 'Images\\' + file;
+                    let from = srcPath + item + '\\' + file;
+
+                    console.log(from + ' >>>>> ' + to);
+                    cc++;
+                    fs.copy(from, to, err => {
+                        if (err) return console.error(err);
+                        console.log(KBID, file + ' copied sucessfully!');
+                        ccc();
+                    });
+                });
+            } else if (fs.lstatSync(srcPath + item).isFile()){ //copy html file
+                let to = destPath + item;
+                let from = srcPath + item;
+
+                console.log(from + ' >>>>> ' + to);
+                cc++;
+                fs.copy(from, to, err => {
+                    if (err) return console.error(err);
+                    console.log(item + ' copied sucessfully!');
+                    ccc();
+                });
+                
+                names.push(KBID);
+            }
+        });
+
 
         //Organize PDFs
         fs.readdirSync(path + "PDFs").forEach(file => {
@@ -334,21 +372,17 @@ function createWindow() {
             let src = path + 'PDFs\\' + file;
             let dir = path + 'Organized\\' + KBID;
             let dest = dir + '\\' + file;
-
-            console.log(`>\t${file}`);
-            
-            names.push(KBID);
-
             fs.mkdirpSync(dir); //create dest dir if doesn't exits
-            fs.copySync(src, dest); //copy PDFs
+
+            console.log(src + ' >>>>> ' + dest);
+            cc++;
+            fs.copy(src, dest, err => { //copy PDFs
+                if (err) return console.error(err);
+                console.log(file + ' copied sucessfully!');
+                ccc();
+            }); 
         });
-
-        
-
-        // console.log(names);
-
     });
-
 }
 
 //=============================Electron App=============================//
