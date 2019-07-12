@@ -5,10 +5,8 @@ const path = "\\\\fs-hsg-1\\IT Department\\KB PDF2HTML\\";
 
 
 document.getElementById('organize').addEventListener('click', () => {
-    let checked = document.getElementById('organize').checked;
     document.getElementById('formatter').style.display = 'none';
-    console.log(checked);
-    ipcRenderer.send('organize', checked);
+    ipcRenderer.send('organize');
 });
 
 ipcRenderer.on('organize-done', (event,args)=>{
