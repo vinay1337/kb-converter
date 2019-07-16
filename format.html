@@ -32,24 +32,27 @@
             </div>
             <div class='container'>
                 <p class='desc instr'>
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Copies contents of <span class='white'>PDFs</span> and <span class='white'>HTMLs</span> folders to organized subfolders<br/>
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Once organized, HTML files are cleaned to integrate with KB site better<br/>
-                    <span style='color: white'>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>HTML files are backed up with .old extension before being cleaned</br><br />
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Click the button, sit back, and watch the magic happen 😎<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Copies contents of <span class='white'>PDFs</span>
+                    and <span class='white'>HTMLs</span> folders to organized subfolders<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Once organized, HTML files are cleaned to
+                    integrate with KB site better<br />
+                    <span style='color: white'>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>HTML files are backed up
+                    with .old extension before being cleaned</br><br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Click the button, sit back, and watch the magic
+                    happen 😎<br />
                     <span style='color: white'>&gt;&nbsp;&nbsp;</span>Formatted KB folders located in:<br />
                 </p>
                 <p class='desc dir'>\\FS-LS-2\IT Department\KB PDF2HTML\Organized</p>
             </div>
             <div class='container' id='formatter'>
-                <input class='btn' type="button" id="organize" value="Format KBs"><br/>
-                <!-- <label for='clean' class='option'>Copy Mode</label>
-                <label class="switch">
-                    <input type="checkbox" id='clean' checked='true'>
-                    <span class="slider round"></span>
-                </label> -->
+                <input class='btn' type="button" id="organize" value="Format KBs">
+                <p class='msg' id='status' style='display:none'></p>
+                <p class='msg' id='progress' style='display:none'></p>
             </div>
         </div>
     </div>
+    <img src='loading.gif' class='gif' id='gif' style='display:none' />
+
 
     <footer>
         <p>Vinay Janardhanam - 2019</p>

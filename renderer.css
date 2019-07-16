@@ -121,13 +121,20 @@ footer {
 
 .msg {
     color: white;
-    font-size: 24px;
+    font-size: 20px;
     margin: 2px auto;
 }
 
 .header{
     display:inline;
     vertical-align: sub;
+}
+
+.gif{
+    height: 35%;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 

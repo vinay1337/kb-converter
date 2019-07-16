@@ -7,10 +7,12 @@ const {
 const fs = require('fs-extra');
 const events = require('events');
 const request = require('request');
+const spawn = require('child_process').spawn;
 
 // PATH
 const path = "\\\\fs-hsg-1\\IT Department\\KB PDF2HTML\\";
 const downloadPath = path + "PDFs\\";
+const pyPath = path + 'Scripts\\HTML-beauti.py\\HTML-Beauti.py';
 const onlinePath = "http://kb.wisc.edu/images/group87/";
 
 let mainWindow;
@@ -311,10 +313,10 @@ function createWindow() {
 
 //=============================Organizer=============================//
 {
-    let copy;
-    let names;
+    let names; // KBID list for organizer
 
     ipcMain.on('organize', (event, args) => {
+        let HTMlcount = 0;
         let cc = 0; // copy count
         names = [];
 
@@ -323,6 +325,7 @@ function createWindow() {
             if (cc <= 0) {
                 console.log('Done organizing HTMLs');
                 console.log('KBs copied: ' + names);
+                event.reply('organize-done', names, HTMlcount);
             }
         }
 
@@ -335,8 +338,10 @@ function createWindow() {
             let destPath = path + 'Organized\\' + KBID + '\\';
             fs.mkdirpSync(destPath);
 
-            if (fs.lstatSync(srcPath+item).isDirectory()) { //copy images
+            if (fs.lstatSync(srcPath + item).isDirectory()) { //copy images
+
                 fs.mkdirpSync(destPath + 'Images\\');
+
                 fs.readdirSync(srcPath + item).forEach(file => { //images folder loop
                     let to = destPath + 'Images\\' + file;
                     let from = srcPath + item + '\\' + file;
@@ -349,18 +354,19 @@ function createWindow() {
                         ccc();
                     });
                 });
-            } else if (fs.lstatSync(srcPath + item).isFile()){ //copy html file
+            } else if (fs.lstatSync(srcPath + item).isFile()) { //copy html file
                 let to = destPath + item;
                 let from = srcPath + item;
 
                 console.log(from + ' >>>>> ' + to);
+                HTMlcount++;
                 cc++;
                 fs.copy(from, to, err => {
                     if (err) return console.error(err);
                     console.log(item + ' copied sucessfully!');
                     ccc();
                 });
-                
+
                 names.push(KBID);
             }
         });
@@ -380,7 +386,31 @@ function createWindow() {
                 if (err) return console.error(err);
                 console.log(file + ' copied sucessfully!');
                 ccc();
-            }); 
+            });
+        });
+    });
+
+    ipcMain.on('beautipy', (event, args) => {
+        let pyargs = [pyPath];
+        let count = 0;
+        args.forEach(function (id) {
+            pyargs.push(id.toString());
+            console.log(id);
+        });
+
+        console.log('Running HTML-beauti.py...');
+        python = spawn('python', pyargs);
+
+        python.stdout.on('data', (data) => {
+            console.log(`${data}`);
+            count++;
+            event.reply('pycount', count);
+        });
+
+        python.on('exit', (code) => {
+            console.log('HTML-beauti.py completed');
+            console.log('exiting...');
+            event.reply('beautipy-done');
         });
     });
 }
