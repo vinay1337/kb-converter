@@ -24,6 +24,7 @@ document.getElementById('organize').addEventListener('click', () => {
     progress.style.display = 'block';
     gif.style.display = 'block';
     status.innerHTML = `Organizing...`;
+    progress.innerHTML  = 'Copying files';
     ipcRenderer.send('organize');
 });
 
