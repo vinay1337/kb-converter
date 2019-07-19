@@ -31,20 +31,53 @@
 
 
             <div class='container'>
+                <p class='desc dir' style="font-size: 18px;">Upload Instructions</p>
+                <p class='desc dir' style="font-size: 12px;">Please Read Carefully</p>
                 <p class='desc instr'>
-                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>lorem ipsum<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Enter the KB to be
+                    uploaded in the text box below and <span style='color: white'>open its backend page</span><br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Navigate to the <span style='color: white'>"Review
+                        Options/Comment"</span> section at the bottom of the page<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Make sure option 3 <span style='color: white'>"In
+                        Review"</span> is chosen, enter "HTML" in the box, and click Submit<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Click "Edit document"
+                    button if prompted, then <span style='color:white'>set the editor to HTML mode and clear
+                        it</span><br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Open the converted KB's
+                    <span style='color: white'>HTML source code</span> and copy/paste it into the editor<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Open the KB's <span
+                        style='color: white'>attachment folder</span> located below the editor<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Click "Choose Files",
+                    select all of the KB's images, and upload them<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Click the <span
+                        style='color:white'>"Preview"</span> button
+                    located right below the editor and select <span style='color:white'>"External View"</span><br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Make sure KB doesn't look
+                    broken and fits <span style='color:white'>Style Guide</span> below<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Edit HTML manually if
+                    something looks wrong<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Once completed, click <span
+                        style='color:white'>Submit</span> and repeat these steps on the <span style='color:white'>next
+                        KB</span><br /><br />
                 </p>
-                <p class='desc dir'>yeet</p>
+                <p class='desc dir'>Style Guide</p>
+                <p class='desc instr'>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Remove any UW header images including the
+                    DevHeader if enabled<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>If a title or summary is in the HTML body, move it
+                    to the appropriate section outside body<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Reference the PDF version to make sure the HTML
+                    page looks correct<br />
+                </p>
             </div>
 
             <div class='container'>
+                <span class='desc dir' style='font-size: 18px;'>KB Utilities</span><br /><br />
                 <input class='btn slim' id='outputDir' type='button' value="Open Output Folder">
                 <div class='container dark'>
-                    <p class='desc dir'>KB-Specific Utilities</p>
-                    <span class='desc dir'
-                        style='font-size: 12px; margin:0px;'>https://kb.wisc.edu/kbAdmin/document.php?id=</span>
-                    <input type='number' id='KBIDtxt' autofocus><br />
-                    <input class='btn slim mer' id='adminView' type='button' value='KB admin site'>
+                    <span class='desc dir' style='font-size: 14px; margin:0px;'>KB to upload:</span>
+                    <input type='number' id='KBIDtxt' autofocus><br /><br />
+                    <input class='btn slim mer' id='adminView' type='button' value='KB backend page'>
                     <input class='btn slim mer' id='HTMLedit' type='button' value='Edit HTML file'>
                     <input class='btn slim mer' id='copyPath' type='button' value='Copy image path'>
                     <br />
@@ -57,6 +90,27 @@
                         VS Code
                     </span>
                 </div>
+            </div>
+            <div class='container'>
+                <p class='desc dir'>KB Utility Instructions</p>
+                <p class='desc instr'>
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Each utility operates on
+                    the KB entered in the text box<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span><span style='color:white'>"KB backend page"</span>
+                    opens the
+                    admin view backend page of the KB in a web browser<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span><span style='color:white'>"Edit HTML file"</span>
+                    opens the
+                    HTML file in either Notepad or VS Code<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span><span style='color:white'>"Copy image path"</span>
+                    copies
+                    the location of the KB's Images folder<br />
+                    <span style='color: white'>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>This
+                    is to make it easier to upload the KB's images to the site<br />
+                    <span style='color: white'>&gt;&nbsp;&nbsp;</span>Finally, the <span style='color:white'>output
+                        folder</span>
+                    is where the converted and formatted KBs are stored<br /><br />
+                </p>
             </div>
         </div>
 
