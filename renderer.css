@@ -117,6 +117,7 @@ footer {
     border-radius: 5px;
     margin: 5px 0px;
     padding: 15px 0px;
+    outline: none;
 }
 
 .btn:hover {
@@ -130,7 +131,7 @@ footer {
 }
 
 .btn.slim.mer{
-    min-width: 100px;
+    min-width: 135px;
     width: auto;
     padding: 5px;
 }
@@ -198,3 +199,4 @@ footer {
     font-size: 12px;
     margin-left: 15px;
 }
+
