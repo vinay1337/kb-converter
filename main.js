@@ -41,7 +41,7 @@ function createWindow() {
         titleBarStyle: "hiddenInset"
     })
 
-    //mainWindow.maximize();
+    mainWindow.maximize();
 
     // and load the KB to get login page
     mainWindow.loadFile('./prereqs.html');
