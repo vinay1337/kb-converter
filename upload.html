@@ -9,6 +9,7 @@
     <meta name="google" content="notranslate">
     <meta author='Vinay Janardhanam'>
     <link rel='stylesheet' type='text/css' href='renderer.css'>
+    <link rel='stylesheet' type='text/css' href='checkbox.css'>
 </head>
 
 <body>
@@ -39,11 +40,22 @@
             <div class='container'>
                 <input class='btn slim' id='outputDir' type='button' value="Open Output Folder">
                 <div class='container dark'>
-                    <span class='desc dir' style='font-size: 10px; margin:0px;'>https://kb.wisc.edu/kbAdmin/document.php?id=</span>
-                    <input type='number' id='KBIDtxt' autofocus ><br/>
+                    <p class='desc dir'>KB-Specific Options</p>
+                    <span class='desc dir'
+                        style='font-size: 12px; margin:0px;'>https://kb.wisc.edu/kbAdmin/document.php?id=</span>
+                    <input type='number' id='KBIDtxt' autofocus><br />
                     <input class='btn slim mer' id='adminView' type='button' value='KB admin site'>
                     <input class='btn slim mer' id='HTMLedit' type='button' value='Edit HTML file'>
-                    <input class='btn slim mer' id='copyPath' type='button' value='Copy file path'>
+                    <input class='btn slim mer' id='copyPath' type='button' value='Copy image path'>
+                    <br />
+                    <span style='color:white;font-size: 10px; font-family: "Roboto Mono", monospace;'>
+                        Notepad
+                        <label class="switch" style='vertical-align:middle'>
+                            <input type="checkbox" id='editor'>
+                            <span class="slider round dark"></span>
+                        </label>
+                        VS Code
+                    </span>
                 </div>
             </div>
         </div>
@@ -53,7 +65,7 @@
         </footer>
 
         <script>
-            require('./upload.js')
+            require('./upload.js');
         </script>
 
     </div>
