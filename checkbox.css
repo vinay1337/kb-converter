@@ -46,6 +46,14 @@ input:focus+.slider {
     box-shadow: 0 0 1px #24b0a2;
 }
 
+input:checked+.slider.dark {
+    background-color: #555555;
+}
+
+input:focus+.slider.dark {
+    box-shadow: 0 0 1px #555555;
+}
+
 input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
