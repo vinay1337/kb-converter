@@ -99,7 +99,7 @@ ipcRenderer.on('DONE', (event, args) => {
     } else {
         DLcount.style.display = 'none';
     }
-    document.getElementById('download').style.display = 'inline-block';
+    //document.getElementById('download').style.display = 'inline-block';
     reset();
 });
 
