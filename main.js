@@ -2,7 +2,8 @@ const {
     app,
     BrowserWindow,
     shell,
-    ipcMain
+    ipcMain,
+    dialog
 } = require('electron');
 const fs = require('fs-extra');
 const events = require('events');
@@ -414,6 +415,41 @@ function createWindow() {
         });
     });
 }
+
+ipcMain.on('notfoundhtml', (event, args) => {
+    if (args == '') {
+        dialog.showErrorBox(
+            'Please enter a KB ID',
+            `KB ID cannot be empty`
+        );
+    } else {
+        dialog.showErrorBox(
+            'File Not Found',
+            `${args}.html not found in "${path + 'Organized\\' + args}"`
+        );
+    }
+});
+
+ipcMain.on('notfoundimg', (event, args) => {
+    if (args == '') {
+        dialog.showErrorBox(
+            'Please enter a KB ID',
+            `KB ID cannot be empty`
+        );
+    } else {
+        dialog.showErrorBox(
+            'Image Folder Not Found',
+            `"${path + 'Organized\\' + args + '\\Images'}" not found`
+        );
+    }
+});
+
+ipcMain.on('adminempty',  (event,args)=>{
+    dialog.showErrorBox(
+        'Please enter a KB ID',
+        `KB ID cannot be empty`
+    );
+});
 
 //=============================Electron App=============================//
 {
